@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>회원가입</title>
+<!-- 부트스트랩 CSS 링크 추가 -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+</head>
+<body>
+	<div class="container mt-5">
+		<div class="row justify-content-center">
+			<div class="col-md-8">
+				<div class="card">
+					<div class="card-body">
+						<h3 class="card-title text-center mb-4">회원가입</h3>
+						<!-- 회원가입 폼 -->
+						<form th:action="@{/create}" method="post">
+							<div class="form-group">
+								<label for="email">이메일</label> <input type="email"
+									class="form-control" id="email" name="email"
+									placeholder="이메일을 입력하세요" required>
+							</div>
+							<div class="form-group">
+								<label for="password">비밀번호</label> <input type="password"
+									class="form-control" id="password" name="password"
+									placeholder="비밀번호를 입력하세요" required>
+							</div>
+							<div class="form-group">
+								<label for="nickname">닉네임</label> <input type="text"
+									class="form-control" id="nickname" name="nickname"
+									placeholder="닉네임을 입력하세요" required>
+							</div>
+							<div class="form-group">
+								<label for="profileImage">프로필 이미지 URL</label> <input type="url"
+									class="form-control" id="profileImage" name="profileImage"
+									placeholder="프로필 이미지 URL을 입력하세요">
+							</div>
+							<button type="submit" class="btn btn-primary btn-block">가입하기</button>
+						</form>
+						<!-- 회원가입 폼 끝 -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 부트스트랩 JS 및 기타 스크립트 링크 추가 -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+		integrity="sha384-7E8Q+LLMF25xZxkNqs3f6lJOgdAKwW9qHqy4H/3VnW4KV6gNa6GWEgPxhGpe2/A/"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh/0O1Kr6mZd6owlH1j5wePngtnyIFJ7kTUk8"
+		crossorigin="anonymous"></script>
+</body>
+</html>
