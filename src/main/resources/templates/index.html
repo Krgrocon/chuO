@@ -1,54 +1,137 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login Page</title>
-<!-- 부트스트랩 CSS 링크 추가 -->
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-	crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern UI</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        .navbar {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        #chat-content {
+            background-color: #fff;
+        }
+
+        .input-group .form-control {
+            border-right: 0;
+        }
+
+        .input-group .btn {
+            border-left: 0;
+        }
+
+        .footer-section {
+            margin-top: 30px;
+            border-radius: 15px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 <body>
-	<div class="container mt-5">
-		<div class="row justify-content-center">
-			<div class="col-md-6">
-				<div class="card">
-					<div class="card-body">
-						<h3 class="card-title text-center mb-4">로그인</h3>
-						<form action="/login" method="post">
-							<div class="form-group">
-								<label for="email">이메일 주소</label>
-								<input type="text" class="form-control" id="email" name="email" placeholder="이메일 주소를 입력하세요" required>
-							</div>
-							<div class="form-group">
-								<label for="password">비밀번호</label>
-								<input type="password" class="form-control" id="password" name="password" placeholder="비밀번호를 입력하세요" required>
-							</div>
-							<button type="submit" class="btn btn-primary btn-block">로그인</button>
-						</form>
-						<!-- 회원가입 버튼 추가 -->
-						<div class="text-center mt-3">
-							<p>계정이 없으신가요? <a href="/register" class="btn btn-link">회원가입</a></p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">게시판</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" href="/write">글쓰기</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">미정</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">미정</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">미정</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body" th:if="${session.loginMember == null}">
+                    <h5 class="card-title">로그인창</h5>
+                    <form action="/login" method="post">
+                        <div class="form-group">
+                            <input type="text" name="email" class="form-control mb-2" placeholder="아이디 입력창" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="password" class="form-control mb-2" placeholder="비밀번호 입력창" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">로그인 버튼</button>
+                    </form>
+                    <button href="/register" onclick="location.href='/register'" class="btn btn-secondary btn-block mt-2">회원가입</button>
+                    <button class="btn btn-secondary btn-block">비밀번호 찾기</button>
+                </div>
+                <div class="card-body" th:if="${session.loginMember != null}">
+                    <h5 class="card-title">환영합니다.</h5>
+                    <h1><span th:text="${session.loginMember.nickname}">User</span>님!</h1>
+                    <form action="/logout" method="POST">
+                        <button type="submit" class="btn btn-primary btn-block">로그아웃</button>
+                    </form>
+                </div>
 
-	<!-- 부트스트랩 JS 및 기타 스크립트 링크 추가 -->
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
-		integrity="sha384-7E8Q+LLMF25xZxkNqs3f6lJOgdAKwW9qHqy4H/3VnW4KV6gNa6GWEgPxhGpe2/A/"
-		crossorigin="anonymous"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8sh/0O1Kr6mZd6owlH1j5wePngtnyIFJ7kTUk8"
-		crossorigin="anonymous"></script>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">채팅창</h5>
+                    <div id="chat-content" class="border p-3 mb-3" style="height: 300px; overflow-y: scroll;">
+                        <!-- 채팅 내용 -->
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="chat-input" class="form-control" placeholder="채팅내용">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" id="chat-send">채팅내용 보내기</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-section">
+        <div class="row">
+            <div class="col-md-6">
+                <h5 class="card-title">인기 게시글 목록</h5>
+                <!-- 인기 게시글 내용 -->
+            </div>
+            <div class="col-md-6">
+                <h5 class="card-title">최근 게시글 목록</h5>
+                <!-- 최근 게시글 내용 -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    document.getElementById('chat-send').addEventListener('click', function() {
+        const chatInput = document.getElementById('chat-input');
+        const chatContent = document.getElementById('chat-content');
+        const message = chatInput.value.trim();
+
+        if (message) {
+            const messageElement = document.createElement('div');
+            messageElement.textContent = message;
+            messageElement.classList.add('p-2', 'mb-2', 'bg-light', 'border', 'rounded');
+            chatContent.appendChild(messageElement);
+            chatInput.value = '';
+            chatContent.scrollTop = chatContent.scrollHeight;
+        }
+    });
+</script>
 </body>
 </html>

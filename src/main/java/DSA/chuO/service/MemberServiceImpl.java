@@ -39,4 +39,14 @@ public class MemberServiceImpl implements MemberService {
 		return member;
 	}
 
+	public boolean MemberEmailVerification(String email){
+		boolean ismembereamil = true;
+		System.out.println("email: " + email);
+		Member memberemail = memberRepositroy.findByEmail(email);
+		if(memberemail == null){
+			ismembereamil = false;
+		}
+		return ismembereamil;
+	}
+
 }
